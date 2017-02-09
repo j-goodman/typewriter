@@ -1,0 +1,33 @@
+body {
+  background: #000;
+}
+
+mechanism {
+  display: block;
+}
+
+.paper {
+  background: #fff;
+  display: block;
+  height: 640px;
+  margin: 24px auto;
+  width: 495px;
+}
+
+.carriage {
+  border-bottom: 2px dotted #444;
+  border-top: 2px dotted #444;
+  height: 12px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+.arm {
+  border-left: 2px dotted #444;
+  border-right: 2px dotted #444;
+  height: 12px;
+  left: 0px;
+  position: absolute;
+  width: 12px;
+}
