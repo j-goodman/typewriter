@@ -4,10 +4,11 @@ var Margin = function (htmlElement, side) {
     this.side = side;
   }
   if (side === 'left') {
-    this.place = 12;
+    this.place = 24;
   } else if (side === 'right') {
-    this.place = 460;
+    this.place = 424;
   }
+  this.element.style.left = this.place;
   this.locked = true;
   this.setup();
   var paper = document.getElementById('paper');

@@ -38,7 +38,7 @@ Carriage.prototype.type = function (character) {
   ctx.font = "13px Courier";
   ctx.fillText(character, this.armPosition + 10, this.position + 12);
   this.moveArm(this.charWidth);
-  if (this.armPosition > this.rightMargin.place) {
+  if (this.armPosition > this.rightMargin.place - this.charWidth * 2) {
     this.ringBell();
   }
   this.disruptPosition();
@@ -49,6 +49,7 @@ Carriage.prototype.ringBell = function () {
 };
 
 Carriage.prototype.functionKey = function (key) {
+  this.arm.className = 'arm';
   if (key === 'Backspace' || key === 'ArrowLeft') {
     this.moveArm(-this.charWidth);
   } else if (key === 'Enter') {
@@ -79,7 +80,7 @@ Carriage.prototype.setup = function () {
   this.interval = setInterval (function () {
     if (this.position + 3 < 50) {
       this.move(3);
-      this.moveArm(0.75);
+      this.moveArm(1.5);
     } else {
       this.moveTo(50);
       clearInterval(this.interval);
