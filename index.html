@@ -1,9 +1,15 @@
 <head>
   <link rel='stylesheet' href='style.css'>
-  <script type='text/javascript' src='typewriter.js'></script>
+  <script type='text/javascript' src='js/carriage.js'></script>
+  <script type='text/javascript' src='js/margins.js'></script>
+  <script type='text/javascript' src='js/typewriter.js'></script>
 </head>
 <body>
   <canvas class='paper' id='paper' height=640 width='495'></canvas>
+  <mechanism class='margin-slider'>
+    <mechanism class='left-margin' id='left-margin'></mechanism>
+    <mechanism class='right-margin' id='right-margin'></mechanism>
+  </mechanism>
   <mechanism class='carriage' id='carriage'>
     <mechanism class='arm' id='arm'></mechanism>
   </mechanism>

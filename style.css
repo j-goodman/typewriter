@@ -15,8 +15,8 @@ mechanism {
 }
 
 .carriage {
-  border-bottom: 2px dotted #444;
-  border-top: 2px dotted #444;
+  border-bottom: 2px dotted #777;
+  border-top: 2px dotted #777;
   height: 12px;
   position: absolute;
   top: 0px;
@@ -24,10 +24,40 @@ mechanism {
 }
 
 .arm {
-  border-left: 2px dotted #444;
-  border-right: 2px dotted #444;
+  border-left: 2px dotted #777;
+  border-right: 2px dotted #777;
   height: 12px;
   left: 0px;
   position: absolute;
   width: 12px;
+}
+
+.alert {
+  border-left: 2px solid #f00;
+  border-right: 2px solid #f00;
+}
+
+.margin-slider {
+  display: flex;
+  margin: -24px auto;
+  width: 495px;
+}
+
+.left-margin, .right-margin {
+  cursor: pointer;
+  height: 0;
+  position: relative;
+  width: 0;
+}
+
+.left-margin {
+	border-top: 24px solid #777;
+	border-left: 24px solid transparent;
+  left: 0px;
+}
+
+.right-margin {
+	border-top: 24px solid #777;
+	border-right: 24px solid transparent;
+  left: 448px;
 }

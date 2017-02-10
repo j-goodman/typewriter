@@ -1,11 +1,11 @@
-var Typewriter = {};
-Typewriter.keyboard = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "];
-
 var Carriage = function (htmlFrame, htmlArm) {
   this.frame = htmlFrame;
   this.arm = htmlArm;
   this.position = 0;
   this.paper = document.getElementById('paper');
+  this.charWidth = 12;
+  this.lineHeight = 20;
+  this.tightness = 32;
   this.leftBorder = this.paper.offsetLeft;
   this.rightBorder = this.paper.offsetLeft + this.paper.width;
   this.topBorder = this.paper.offsetTop;
@@ -35,40 +35,54 @@ Carriage.prototype.moveArmTo = function (place) {
 
 Carriage.prototype.type = function (character) {
   var ctx = this.paper.getContext('2d');
-  ctx.font = "16px Courier";
+  ctx.font = "13px Courier";
   ctx.fillText(character, this.armPosition + 10, this.position + 12);
-  this.moveArm(14);
-  if (this.armPosition > this.paper.width - 28) {
+  this.moveArm(this.charWidth);
+  if (this.armPosition > this.rightMargin.place) {
+    this.ringBell();
+  }
+  this.disruptPosition();
+};
+
+Carriage.prototype.ringBell = function () {
+  this.arm.className = 'arm alert';
+};
+
+Carriage.prototype.functionKey = function (key) {
+  if (key === 'Backspace' || key === 'ArrowLeft') {
+    this.moveArm(-this.charWidth);
+  } else if (key === 'Enter') {
     this.return();
+  } else if (key === 'ArrowRight') {
+    this.type(" ");
+  } else if (key === 'ArrowUp') {
+    this.move(-this.lineHeight);
+  } else if (key === 'ArrowDown') {
+    this.move(this.lineHeight);
+  }
+};
+
+Carriage.prototype.disruptPosition = function () {
+  if (!Math.floor(Math.random() * this.tightness)) {
+    this.armPosition += Math.round(Math.random() * 2) - 1;
+    this.position += Math.round(Math.random() * 2) - 1;
   }
 };
 
 Carriage.prototype.return = function () {
-  this.move(22);
-  this.moveArmTo(0);
+  this.move(this.lineHeight);
+  this.moveArmTo(this.leftMargin.place);
+  this.arm.className = 'arm';
 };
 
 Carriage.prototype.setup = function () {
   this.interval = setInterval (function () {
     if (this.position + 3 < 50) {
       this.move(3);
-      this.moveArm(1.75);
+      this.moveArm(0.75);
     } else {
       this.moveTo(50);
       clearInterval(this.interval);
     }
   }.bind(this), 30);
-};
-
-onload = function () {
-  var carriage = document.getElementById('carriage');
-  var arm = document.getElementById('arm');
-  Typewriter.carriage = new Carriage (carriage, arm);
-  Typewriter.carriage.frame.style.top = Typewriter.carriage.position;
-  Typewriter.carriage.setup();
-  onkeydown = function (event) {
-    if (Typewriter.keyboard.includes(event.key)) {
-      Typewriter.carriage.type(event.key);
-    }
-  };
 };
