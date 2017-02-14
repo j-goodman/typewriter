@@ -10,6 +10,7 @@ Typewriter.keyboard = [
 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 
 ",", ".", "'", '"', "(", ")", "-", "?", "!", ":", " ", "\\", "/",
+"$", "%", "#", "+", "=", ";", "~", "&", "*", "[", "]",
 ];
 
 var setUpCarriage = function () {
@@ -38,8 +39,17 @@ var keyEvent = function (event) {
   }
 };
 
+Typewriter.printPDF = function () {
+  var canvas = document.getElementById('paper');
+  var img = canvas.toDataURL('image/jpeg');
+  var doc = new jsPDF();
+  doc.addImage(img, 'JPEG', 0, 0, 200, 256);
+  doc.save();
+};
+
 onload = function () {
   setUpCarriage();
   setUpMargins();
   onkeydown = keyEvent;
+  document.getElementById('print').onclick = Typewriter.printPDF;
 };

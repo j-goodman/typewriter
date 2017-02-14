@@ -11,6 +11,11 @@ var Carriage = function (htmlFrame, htmlArm) {
   this.topBorder = this.paper.offsetTop;
   this.bottomBorder = this.paper.offsetTop + this.paper.height;
   this.armPosition = 0;
+
+  var ctx = this.paper.getContext('2d');
+  ctx.font = "13px Courier";
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0,0,495,640);
 };
 
 Carriage.prototype.move = function (amount) {
@@ -35,7 +40,7 @@ Carriage.prototype.moveArmTo = function (place) {
 
 Carriage.prototype.type = function (character) {
   var ctx = this.paper.getContext('2d');
-  ctx.font = "13px Courier";
+  ctx.fillStyle = "#000";
   ctx.fillText(character, this.armPosition + 10, this.position + 12);
   this.moveArm(this.charWidth);
   if (this.armPosition > this.rightMargin.place - this.charWidth * 2) {
