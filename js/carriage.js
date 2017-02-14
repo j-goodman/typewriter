@@ -3,7 +3,7 @@ var Carriage = function (htmlFrame, htmlArm) {
   this.arm = htmlArm;
   this.position = 0;
   this.paper = document.getElementById('paper');
-  this.charWidth = 10;
+  this.charWidth = 9;
   this.lineHeight = 18;
   this.tightness = 32;
   this.leftBorder = this.paper.offsetLeft;
@@ -40,7 +40,7 @@ Carriage.prototype.moveArmTo = function (place) {
 Carriage.prototype.type = function (character) {
   var ctx = this.paper.getContext('2d');
   ctx.fillStyle = "#000";
-  ctx.font = "20px Courier";
+  ctx.font = "24px Courier";
   ctx.fillText(character, (this.armPosition + 10) * 2, (this.position + 12) * 2);
   this.moveArm(this.charWidth);
   if (this.armPosition > this.rightMargin.place - this.charWidth * 2) {
