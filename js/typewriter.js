@@ -40,11 +40,57 @@ var keyEvent = function (event) {
 };
 
 Typewriter.printPDF = function () {
-  var canvas = document.getElementById('paper');
-  var img = canvas.toDataURL('image/jpeg');
-  var doc = new jsPDF();
-  doc.addImage(img, 'JPEG', 0, 0, 200, 256);
+  var i; var canvas; var img; var doc;
+  var stack = document.getElementById('paper-stack');
+  doc = new jsPDF();
+  for (i=0 ; i<stack.children.length ; i++) {
+    canvas = stack.children[i];
+    img = canvas.toDataURL('image/jpeg');
+    doc.addImage(img, 'JPEG', 0, 0, 200, 256);
+    if (i !== stack.children.length - 1) {
+      doc.addPage();
+    }
+  }
   doc.save();
+};
+
+Typewriter.stackPaper = function (currentPaper) {
+  var stack = document.getElementById('paper-stack');
+  currentPaper.parentElement.removeChild(currentPaper);
+  currentPaper.className = "paper stacked";
+  stack.appendChild(currentPaper);
+};
+
+Typewriter.discardPaper = function () {
+  var currentPaper = document.getElementById('loaded-paper');
+  var stack = document.getElementById('paper-stack');
+  currentPaper.parentElement.removeChild(currentPaper);
+};
+
+Typewriter.loadNewPaper = function () {
+  var currentPaper = document.getElementById('loaded-paper');
+  if (this.action === 'stack') {
+    Typewriter.stackPaper(currentPaper);
+  } else if (this.action === 'discard') {
+    Typewriter.discardPaper(currentPaper);
+  }
+
+  // <canvas class='paper' id='loaded-paper' height='1280' width='990'></canvas>
+  var newPaper = document.createElement('CANVAS');
+  newPaper.className = 'paper';
+  currentPaper.id = '';
+  newPaper.id = 'loaded-paper';
+  newPaper.height = 1280;
+  newPaper.width = 990;
+
+  var tableMarker = document.getElementById('table-marker');
+
+  var table = document.getElementById('table');
+  table.insertBefore(newPaper, tableMarker);
+
+  Typewriter.carriage.preparePaper();
+  Typewriter.carriage.moveArmTo(Typewriter.carriage.leftMargin.place);
+  Typewriter.carriage.moveTo(50);
 };
 
 onload = function () {
@@ -52,4 +98,6 @@ onload = function () {
   setUpMargins();
   onkeydown = keyEvent;
   document.getElementById('print').onclick = Typewriter.printPDF;
+  document.getElementById('new-paper').onclick = Typewriter.loadNewPaper.bind({action: 'stack'});
+  document.getElementById('discard-paper').onclick = Typewriter.loadNewPaper.bind({action: 'discard'});
 };

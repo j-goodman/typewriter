@@ -2,16 +2,19 @@ var Carriage = function (htmlFrame, htmlArm) {
   this.frame = htmlFrame;
   this.arm = htmlArm;
   this.position = 0;
-  this.paper = document.getElementById('paper');
   this.charWidth = 9;
   this.lineHeight = 18;
   this.tightness = 32;
-  this.leftBorder = this.paper.offsetLeft;
+  this.armPosition = 0;
+  this.preparePaper();
+};
+
+Carriage.prototype.preparePaper = function () {
+  this.paper = document.getElementById('loaded-paper');
+  this.leftBorder = this.paper.offsetLeft + 8;
   this.rightBorder = this.paper.offsetLeft + this.paper.width;
   this.topBorder = this.paper.offsetTop;
   this.bottomBorder = this.paper.offsetTop + this.paper.height;
-  this.armPosition = 0;
-
   var ctx = this.paper.getContext('2d');
   ctx.fillStyle = "#fff";
   ctx.fillRect(0,0,990,1280);

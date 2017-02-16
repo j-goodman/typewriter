@@ -1,15 +1,35 @@
 body {
   background: #731;
+  font-family: monospace;
 }
 
 mechanism {
   display: block;
 }
 
+key {
+  display: block;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  margin: 24px 0;
+  justify-content: center;
+}
+
+.sidebar {
+  background: #210;
+  display: flex;
+  flex-direction: column;
+  height: 640px;
+  margin: 0 32px;
+  width: 160px;
+}
+
 .paper {
   display: block;
   height: 640px;
-  margin: 24px auto;
   width: 495px;
 }
 
@@ -38,7 +58,7 @@ mechanism {
 
 .margin-slider {
   display: flex;
-  margin: -24px auto;
+  margin: 0 auto;
   width: 495px;
 }
 
@@ -61,10 +81,45 @@ mechanism {
   left: 448px;
 }
 
-.print {
-  position: absolute;
-  top: 24px;
-  right: 350px;
+.side-key {
+  cursor: pointer;
   height: 60px;
-  width: 100px;
+  margin: 16px auto;
+  text-align: center;
+  line-height: 60px;
+  width: 120px;
+}
+
+.side-key:hover {
+  height: 55px;
+}
+
+.print-key {
+  background: #db9;
+}
+
+.print-key:hover {
+  border-bottom: 5px solid #f00;
+}
+
+.paper-key {
+  background: #9bd;
+}
+
+.paper-key:hover {
+  border-bottom: 5px solid #00f;
+}
+
+.trash-key {
+  background: #9db;
+}
+
+.trash-key:hover {
+  border-bottom: 5px solid #0f0;
+}
+
+.stacked {
+  height: 160px;
+  margin: 16px auto 0;
+  width: 124px;
 }

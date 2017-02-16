@@ -11,7 +11,7 @@ var Margin = function (htmlElement, side) {
   this.element.style.left = this.place;
   this.locked = true;
   this.setup();
-  var paper = document.getElementById('paper');
+  var paper = document.getElementById('loaded-paper');
   this.paperLeft = paper.offsetLeft;
   this.paperRight = paper.offsetRight;
 };
