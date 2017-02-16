@@ -6,6 +6,7 @@ var Carriage = function (htmlFrame, htmlArm) {
   this.lineHeight = 18;
   this.tightness = 32;
   this.armPosition = 0;
+  this.bell = document.getElementById('bell-audio');
   this.preparePaper();
 };
 
@@ -52,8 +53,23 @@ Carriage.prototype.type = function (character) {
   this.disruptPosition();
 };
 
+Carriage.prototype.whiteout = function () {
+  var ctx = this.paper.getContext('2d');
+  var shapes = ['X', 'H', 'O', 'M', 'W', 'T', 'L', 'p', 'j', 'q'];
+  var character = shapes[Math.floor(Math.random() * shapes.length + 1)];
+  ctx.fillStyle = "#fff";
+  ctx.globalAlpha = 0.9;
+  ctx.font = "24px Courier";
+  ctx.fillText(character, (this.armPosition + 10) * 2, (this.position + 12) * 2);
+  ctx.globalAlpha = 1;
+  this.disruptPosition();
+};
+
 Carriage.prototype.ringBell = function () {
-  this.arm.className = 'arm alert';
+  if (this.arm.className !== 'arm alert') {
+    this.bell.play();
+    this.arm.className = 'arm alert';
+  }
 };
 
 Carriage.prototype.functionKey = function (key) {
@@ -68,6 +84,8 @@ Carriage.prototype.functionKey = function (key) {
     this.move(-this.lineHeight);
   } else if (key === 'ArrowDown') {
     this.move(this.lineHeight);
+  } else if (key === 'Delete') {
+    this.whiteout();
   }
 };
 

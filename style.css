@@ -1,5 +1,5 @@
 body {
-  background: #731;
+  background: #000;
   font-family: monospace;
 }
 
@@ -19,12 +19,17 @@ key {
 }
 
 .sidebar {
-  background: #210;
+  background: #000;
+  border: 1px solid #fff;
   display: flex;
   flex-direction: column;
   height: 640px;
   margin: 0 32px;
   width: 160px;
+}
+
+.right-sidebar {
+  justify-content: center;
 }
 
 .paper {
@@ -66,56 +71,36 @@ key {
   cursor: pointer;
   height: 0;
   position: relative;
+  top: 1px;
   width: 0;
 }
 
 .left-margin {
-	border-top: 24px solid #777;
+	border-top: 24px solid #fff;
 	border-left: 24px solid transparent;
   left: 0px;
 }
 
 .right-margin {
-	border-top: 24px solid #777;
+	border-top: 24px solid #fff;
 	border-right: 24px solid transparent;
   left: 448px;
 }
 
 .side-key {
+  background: #fff;
+  border: 1px solid #fff;
   cursor: pointer;
   height: 60px;
-  margin: 16px auto;
+  margin: 8px auto;
   text-align: center;
   line-height: 60px;
   width: 120px;
 }
 
 .side-key:hover {
-  height: 55px;
-}
-
-.print-key {
-  background: #db9;
-}
-
-.print-key:hover {
-  border-bottom: 5px solid #f00;
-}
-
-.paper-key {
-  background: #9bd;
-}
-
-.paper-key:hover {
-  border-bottom: 5px solid #00f;
-}
-
-.trash-key {
-  background: #9db;
-}
-
-.trash-key:hover {
-  border-bottom: 5px solid #0f0;
+  background: #000;
+  color: #fff;
 }
 
 .stacked {
