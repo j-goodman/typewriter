@@ -51,7 +51,14 @@ Typewriter.printPDF = function () {
       doc.addPage();
     }
   }
-  doc.save();
+  if (stack.children.length === 0) {
+    this.innerText = 'stack is empty';
+    setTimeout(function () {
+      this.innerText = 'print stack';
+    }.bind(this), 2000);
+  } else {
+    doc.save();
+  }
 };
 
 Typewriter.stackPaper = function (currentPaper) {
