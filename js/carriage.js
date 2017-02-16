@@ -58,7 +58,7 @@ Carriage.prototype.whiteout = function () {
   var shapes = ['X', 'H', 'O', 'M', 'W', 'T', 'L', 'p', 'j', 'q'];
   var character = shapes[Math.floor(Math.random() * shapes.length)];
   ctx.fillStyle = "#eee";
-  ctx.globalAlpha = 0.8;
+  ctx.globalAlpha = 0.84;
   ctx.font = "24px Courier";
   ctx.fillText(character, (this.armPosition + 10) * 2, (this.position + 12) * 2);
   ctx.globalAlpha = 1;
