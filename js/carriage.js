@@ -33,12 +33,13 @@ Carriage.prototype.moveTo = function (place) {
 
 Carriage.prototype.moveArm = function (amount) {
   this.armPosition += amount;
-  this.arm.style.left = this.armPosition + this.leftBorder;
+  console.log(this.armPosition, this.leftBorder);
+  this.arm.style.transform = 'translateX(' + (Math.round(this.armPosition + this.leftBorder)) + 'px)';
 };
 
 Carriage.prototype.moveArmTo = function (place) {
   this.armPosition = place;
-  this.arm.style.left = this.armPosition + this.leftBorder;
+  this.arm.style.transform = 'translateX(' + (Math.round(this.armPosition + this.leftBorder)) + 'px)';
 };
 
 Carriage.prototype.type = function (character) {
@@ -55,10 +56,10 @@ Carriage.prototype.type = function (character) {
 
 Carriage.prototype.whiteout = function () {
   var ctx = this.paper.getContext('2d');
-  var shapes = ['X', 'H', 'O', 'M', 'W', 'T', 'L', 'p', 'j', 'q'];
+  var shapes = ['X', 'H', 'O', 'M', 'W', 'T', 'L', 'p', 'j', 'q', ';'];
   var character = shapes[Math.floor(Math.random() * shapes.length)];
   ctx.fillStyle = "#eee";
-  ctx.globalAlpha = 0.84;
+  ctx.globalAlpha = Math.random();
   ctx.font = "24px Courier";
   ctx.fillText(character, (this.armPosition + 10) * 2, (this.position + 12) * 2);
   ctx.globalAlpha = 1;

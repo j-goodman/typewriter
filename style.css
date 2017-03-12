@@ -43,26 +43,28 @@ key {
 }
 
 .carriage {
-  border-bottom: 1px solid #000;
-  border-top: 1px solid #000;
+  border-bottom: 1px solid #112;
+  border-top: 1px solid #112;
   height: 12px;
   position: absolute;
   top: 0px;
+  left: 0px;
   width: 100%;
 }
 
 .arm {
-  border-left: 2px dotted #000;
-  border-right: 2px dotted #000;
+  border-left: 2px dotted #112;
+  border-right: 2px dotted #112;
   height: 12px;
   left: 0px;
+  transform: translateX(0px);
   position: absolute;
   width: 12px;
 }
 
 .alert {
-  border-left: 2px solid #fff;
-  border-right: 2px solid #fff;
+  border-left: 2px solid #f03;
+  border-right: 2px solid #f03;
 }
 
 .margin-slider {
