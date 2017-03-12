@@ -56,7 +56,7 @@ Carriage.prototype.type = function (character) {
 
 Carriage.prototype.whiteout = function () {
   var ctx = this.paper.getContext('2d');
-  var shapes = ['X', 'H', 'O', 'M', 'W', 'T', 'L', 'p', 'j', 'q', ';'];
+  var shapes = ['X', 'H', 'O', 'M', 'W', 'T', 'L', 'p', 'j', 'q', ';', '0'];
   var character = shapes[Math.floor(Math.random() * shapes.length)];
   ctx.fillStyle = "#eee";
   ctx.globalAlpha = Math.random();
