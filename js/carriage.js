@@ -84,7 +84,7 @@ Carriage.prototype.functionKey = function (key) {
     this.move(-this.lineHeight);
   } else if (key === 'ArrowDown') {
     this.move(this.lineHeight);
-  } else if (key === 'Delete') {
+  } else if (key === 'Delete' || key === '_') {
     this.whiteout();
   }
 };
