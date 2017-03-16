@@ -55,13 +55,16 @@ Carriage.prototype.type = function (character) {
 };
 
 Carriage.prototype.whiteout = function () {
-  var ctx = this.paper.getContext('2d');
+  var ctx = this.paper.getContext('2d'); var character;
   var shapes = ['X', 'H', 'O', 'M', 'W', 'T', 'L', 'p', 'j', 'q', ';', '0'];
-  var character = shapes[Math.floor(Math.random() * shapes.length)];
-  ctx.fillStyle = "#eee";
-  ctx.globalAlpha = Math.random();
-  ctx.font = "24px Courier";
-  ctx.fillText(character, (this.armPosition + 10) * 2, (this.position + 12) * 2);
+  var i = 0; while (i < 4) {
+    character = shapes[Math.floor(Math.random() * shapes.length)];
+    ctx.fillStyle = "#eee";
+    ctx.globalAlpha = Math.random();
+    ctx.font = "24px Courier";
+    ctx.fillText(character, (this.armPosition + 10) * 2, (this.position + 12) * 2);
+    i++
+  }
   ctx.globalAlpha = 1;
   this.disruptPosition();
 };
