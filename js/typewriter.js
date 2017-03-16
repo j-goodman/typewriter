@@ -46,7 +46,7 @@ Typewriter.printPDF = function () {
   for (i=0 ; i<stack.children.length ; i++) {
     canvas = stack.children[i];
     img = canvas.toDataURL('image/jpeg');
-    doc.addImage(img, 'JPEG', 0, 0, 200, 256);
+    doc.addImage(img, 'JPEG', 5, 20, 200, 256);
     if (i !== stack.children.length - 1) {
       doc.addPage();
     }
